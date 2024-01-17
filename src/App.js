@@ -1,21 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+
+import Login from "./components/Login";
+import Home from "./components/Home";
+import MainHeader from "./components/MainHeader";
 
 function App() {
-  console.log("App component rendered");
-  let [resourceType, setResourceType] = useState('Home');
+  const [isLoggedIn, updateIsLoggedIn] = useState(false);
+
+  
   useEffect(() => {
-    console.log(resourceType);
-  }, [resourceType])
-  return (
-    <div className="App">
-      <button onClick={() => {setResourceType('Home')}}>HOME</button>
-      <button onClick={() => {setResourceType('About')}}>ABOUT</button>
-      <button onClick={() => {setResourceType('Contact')}}>CONTACT</button>
-      <h3>{resourceType}</h3>
-    </div>
-  );
+    let isLoggedInValue = localStorage.getItem('isLoggedIn');
+    if(isLoggedInValue === '1') {
+      updateIsLoggedIn(true);
+    };
+  }, []);
+
+  const loginHandler = (email, password) => {
+    localStorage.setItem('isLoggedIn', '1');
+    updateIsLoggedIn(true);
+  };
+
+  const logoutHandler = () => {
+    localStorage.removeItem('isLoggedIn');
+    updateIsLoggedIn(false);
+  };
+
+  return <React.Fragment>
+    <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler}></MainHeader>
+    <main>
+      {!isLoggedIn && <Login onLogin={loginHandler}></Login>}
+      {isLoggedIn && <Home onLogout={logoutHandler}></Home>}
+    </main>
+  </React.Fragment>;
 }
 
 export default App;
