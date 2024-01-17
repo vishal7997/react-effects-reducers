@@ -1,23 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from 'react';
 
 function App() {
+  console.log("App component rendered");
+  let [resourceType, setResourceType] = useState('Home');
+  useEffect(() => {
+    console.log(resourceType);
+  }, [resourceType])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={() => {setResourceType('Home')}}>HOME</button>
+      <button onClick={() => {setResourceType('About')}}>ABOUT</button>
+      <button onClick={() => {setResourceType('Contact')}}>CONTACT</button>
+      <h3>{resourceType}</h3>
     </div>
   );
 }
