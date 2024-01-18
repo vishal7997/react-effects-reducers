@@ -12,9 +12,18 @@ const Login = (props) => {
   const [formIsValid, setFormIsValid] = useState(false);
 
   useEffect(() => {
-    setFormIsValid(
-      enteredEmail.includes("@") && enteredPassword.trim().length > 6
-    );
+    let value = setTimeout(() => {
+        console.log("Validating input fields...");
+        setFormIsValid(
+          enteredEmail.includes("@") && enteredPassword.trim().length > 6
+        );
+    }, 500);
+
+    // The function which is getting called on return is a Cleanup Function.
+    return () => {
+        console.log("Cleanup function called");
+        clearTimeout(value);
+    }
   }, [enteredEmail, enteredPassword]);
 
   const emailChangeHandler = (event) => {
