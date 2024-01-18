@@ -4,6 +4,7 @@ import "./App.css";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import MainHeader from "./components/MainHeader";
+import Demo from "./components/ReducerDemo/Demo";
 
 function App() {
   const [isLoggedIn, updateIsLoggedIn] = useState(false);
@@ -27,11 +28,12 @@ function App() {
   };
 
   return <React.Fragment>
-    <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler}></MainHeader>
+    {/* <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler}></MainHeader>
     <main>
       {!isLoggedIn && <Login onLogin={loginHandler}></Login>}
       {isLoggedIn && <Home onLogout={logoutHandler}></Home>}
-    </main>
+    </main> */}
+    <Demo></Demo>
   </React.Fragment>;
 }
 
