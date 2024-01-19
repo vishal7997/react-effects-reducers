@@ -9,7 +9,7 @@ const MainHeader = (props) => {
     // className={classes["main-header"]}
     >
       <h1>Demo React App</h1>
-      <Navigation onLogout={props.onLogout} />
+      <Navigation />
     </header>
   );
 };
