@@ -39,20 +39,20 @@ const Login = (props) => {
     isValid: undefined,
   });
 
-  //   useEffect(() => {
-  //     let value = setTimeout(() => {
-  //         console.log("Validating input fields...");
-  //         setFormIsValid(
-  //           enteredEmail.includes("@") && enteredPassword.trim().length > 6
-  //         );
-  //     }, 500);
+  useEffect(() => {
+    let value = setTimeout(() => {
+      console.log("Validating input fields...");
+      setFormIsValid(
+        emailState.value.includes("@") && passwordState.value.trim().length > 6
+      );
+    }, 500);
 
-  //     // The function which is getting called on return is a Cleanup Function.
-  //     return () => {
-  //         console.log("Cleanup function called");
-  //         clearTimeout(value);
-  //     }
-  //   }, [enteredEmail, enteredPassword]);
+    // The function which is getting called on return is a Cleanup Function.
+    return () => {
+      console.log("Cleanup function called");
+      clearTimeout(value);
+    };
+  }, [emailState.isValid, passwordState.isValid]);
 
   const emailChangeHandler = (event) => {
     // setEnteredEmail(event.target.value);
