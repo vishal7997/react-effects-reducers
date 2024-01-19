@@ -3,7 +3,8 @@ import "./App.css";
 
 import Login from "./components/Login";
 import Home from "./components/Home";
-import MainHeader from "./components/MainHeader";
+import MainHeader from "./components/MainHeader/MainHeader";
+import AuthContext from "./components/Context/AuthContext";
 // import Demo from "./components/ReducerDemo/Demo";
 
 function App() {
@@ -27,17 +28,13 @@ function App() {
   };
 
   return (
-    <React.Fragment>
-      <MainHeader
-        isAuthenticated={isLoggedIn}
-        onLogout={logoutHandler}
-      ></MainHeader>
+    <AuthContext.Provider value={{ isLoggedIn: isLoggedIn }}>
+      <MainHeader onLogout={logoutHandler}></MainHeader>
       <main>
         {!isLoggedIn && <Login onLogin={loginHandler}></Login>}
         {isLoggedIn && <Home onLogout={logoutHandler}></Home>}
       </main>
-      {/* <Demo></Demo> */}
-    </React.Fragment>
+    </AuthContext.Provider>
   );
 }
 
