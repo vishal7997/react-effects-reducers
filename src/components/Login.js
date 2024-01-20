@@ -1,4 +1,5 @@
-import { useEffect, useReducer, useState } from "react";
+import { useContext, useEffect, useReducer, useState } from "react";
+import AuthContext from "./Context/AuthContext";
 
 // import Card from '../UI/Card/Card';
 // import classes from './Login.module.css';
@@ -39,6 +40,8 @@ const Login = (props) => {
     isValid: undefined,
   });
 
+  let authctx = useContext(AuthContext);
+
   useEffect(() => {
     let value = setTimeout(() => {
       console.log("Validating input fields...");
@@ -72,7 +75,7 @@ const Login = (props) => {
   };
   const submitHandler = (event) => {
     event.preventDefault();
-    props.onLogin(emailState.value, passwordState.value);
+    authctx.onLogin(emailState.value, passwordState.value);
   };
   return (
     // <Card className={classes.login}>
