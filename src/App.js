@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import "./App.css";
 
-import Login from "./components/Login";
+import Login from "./components/Login/Login";
 import Home from "./components/Home";
 import MainHeader from "./components/MainHeader/MainHeader";
 import AuthContext from "./components/Context/AuthContext";
